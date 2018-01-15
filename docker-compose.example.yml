@@ -1,0 +1,18 @@
+version: '3'
+services:
+  boto:
+    image: xendera/boto3
+    container_name: boto
+    hostname: boto
+    volumes:
+      - .:/usr/src/app
+    command: python /usr/src/app/your_script.py
+    environment:
+      # You can provide AWS credentials via env vars, see boto3 rtd:
+      # https://boto3.readthedocs.io/en/latest/guide/configuration.html#environment-variables
+      - AWS_ACCESS_KEY_ID=<your_aws_access_key>
+      - AWS_SECRET_ACCESS_KEY=<your_aws_secret_access_key>
+      - BUCKET_NAME=<your_bucket>
+      # You can provide Slack API Token via SLACK_API_TOKEN env var, see doc:
+      # http://slackapi.github.io/python-slackclient
+      - SLACK_API_TOKEN=<your_slack_api_token>
